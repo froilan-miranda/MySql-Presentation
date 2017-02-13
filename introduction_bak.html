@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>MySQL</title>
+
+		<meta name="Introduction to MySQL">
+		<meta name="author" content="Froilan Miranda">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/solarized.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+			<div class="slides">
+
+
+				<section><!------------------------------------ slide ---------------------------------------------->
+					<h1>MySQL</h1>
+					<p>
+						<small>Created by <a href="http://www.zipcoder.io">Froilan Miranda</a></small>
+					</p>
+				</section>
+
+				<section><!------------------------------------ slide ---------------------------------------------->
+					<h2>Database Basics</h2>
+					<section>
+						<h3>Database vs. Spreadsheets</h3>
+						<p>
+							Both databases and spreadsheets store data in rows and columns. Both can calculate new data based on existing data. And both can allow more than one person to view and change data.
+						</p>
+					</section>
+					<section>
+						<h3>Database vs. Spreadsheets</h3>
+						<p>
+							 In a spreadsheet, data is stored in a cell. A cell can have raw data, like the number one or the string hello. A cell can also have a calculation. And that calculation can be standalone, or it can refer to other cells. A cell also contains formatting information like the font size or highlighting. You can format the type of data you intend to see in a cell, like specifying that the numbers have two decimal places.
+						</p>
+					</section>
+					<section>
+						<h3>Database vs. Spreadsheets</h3>
+						<p>
+							  You can manipulate the data in a spreadsheet by visually moving or sorting the data. A database on the other hand, stores data in a record. And only stores values. Unlike a spreadsheet, formatting information like font size, highlighting, and even sort order are not stored in a database record. Usually that information is completely separate. Part of a program that displays the data, including sorting. By separating the data from the formatting, databases allow you to manipulate data without worrying that you are changing the underlying data.
+						</p>
+					</section>
+					<section>
+						<h3>Database vs. Spreadsheets</h3>
+						<p>
+							  In a spreadsheet, everything you do results in data. If you do a calculation involving one cell, that calculation lives in another cell. In a database, you can do a calculation on a record and just show the calculation result without adding more data to the database. One of the biggest benefits of a database is that you can eliminate duplicate information.
+						</p>
+					</section>
+					<section>
+						<h3>Database vs. Spreadsheets</h3>
+						<p>
+							databases are more efficient at storing data. Changing data is easier and less error prone in a database. Spreadsheets are great for ledger type activities and lists, like showing bank transactions and calculating an account balance They are also good for creating charts and graphs of data. Databases are good for storing lots of information. Where you can specify that the data is a certain type. Databases separate the data from how it is displayed. Which can eliminate duplicate information and reduce data errors.
+						</p>
+						<p>
+							Databases are also good at allowing more than one person at a time to look at and change the data without disturbing each other.
+						</p>
+					</section>
+					<section>
+						<h3>Relational Database vs. flat files</h3>
+						<p>
+							Both can be manipulated to show information in a new form without changing the original data.
+						</p>
+					</section>
+					<section>
+						<h3>Relational Database vs. flat files</h3>
+						<p>
+							Both allow you to extract data out of certain fields. And both have powerful matching and filtering capabilities.
+						</p>
+					</section>
+					<section>
+						<h3>Relational Database vs. flat files</h3>
+						<p>
+							A text file allows you to put anything into it. We can put a string, like Hello There, or we can put a number like 172, and our program won't complain, even if it's supposed to be the field for a date.
+						</p>
+					</section>
+					<section>
+						<h3>Relational Database vs. flat files</h3>
+						<p>
+							 A database will separate the fields for us, a text file does not. We have to enforce a structure if we want our text file to work in a certain way. Like a spreadsheet, text editors have display information stored with the data itself. Text editors are very good for writing text, laying out text on a page, and moving text around.
+						</p>
+					</section>
+					<section>
+						<h3>Relational Database vs. flat files</h3>
+						<p>
+							  They are designed for storing, viewing, and changing documents that consist mostly of text. A text file is sometimes called a flat file especially when comparing to a relational database. This is because a relational database is built to highlight how some data relates to other data. Flat files are great for writing and editing text. They are also good for moving lots of text around. Databases are good for storing information that you want to be a certain type. Databases separate the data from how it is displayed which can eliminate duplicate information and reduce data errors.
+						</p>
+					</section>
+					<section>
+						<h3>Normalizing databases</h3>
+						<p>
+							  The objective is to isolate data so that additions, deletions and modifications of a field can be made in just one table, and then propagated through the rest of the database using the defined relationships.
+						</p>
+					</section>
+					<section>
+						<h3>Common database acronyms</h3>
+						<ul>
+							<li>DB - Database</li>
+							<li>DBA - Database Administrator</li>
+							<li>DBMS - Database Management System</li>
+							<li>RDBMS - Relational Database Management System</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Common database acronyms</h3>
+						<ul>
+							<li>SQL - Structured query language</li>
+							<li>DDL - Data definition language</li>
+							<li>DML - Data manipulation language</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Common database acronyms</h3>
+						<ul>
+							<li>OLAP - Online analytical processing</li>
+							<li>OLTP - Online transactional processing</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Common database acronyms</h3>
+						<ul>
+							<li>CRUD - Create, read, update, delete</li>
+							<li>How to interact with data</li>
+							<li>Basic functionality</li>
+						</ul>
+					</section>
+				</section>
+
+				<section><!------------------------------------ slide ----------------------------------------------->
+					<h2>MySQL Basics</h2>
+					<section>
+						<h3>Understanding MySQL terminology</h3>
+						<ul>
+							<li>Column/Field</li>
+							<li>Row/Record</li>
+							<li>Table</li>
+							<li>Database/Schema</li>
+							<li>Query</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Finding Information about your database</h3>
+						<pre><code data-trim>
+SHOW DATABASES;
+						</code></pre>
+						<pre><code data-trim>
+SHOW TABLES FROM information_schema;
+						</code></pre>
+						<pre><code data-trim>
+USE information_schema;
+SHOW TABLES;
+						</code></pre>
+						<pre><code data-trim>
+USE information_schema;
+SHOW COLUMNS FROM SCHEMATA;
+						</code></pre>
+						<pre><code data-trim>
+USE mysql;
+SHOW COLUMNS FROM information_schema.SCHEMATA;
+						</code></pre>
+					</section>
+					<section>
+						<h3>More resources</h3>
+						<pre><code data-trim>
+help SHOW;
+						</code></pre>
+					</section>
+					<section>
+						<h3>Data types</h3>
+						<ul>
+							<li>VARCHAR - variable character (255 characters per field)</li>
+							<li>CHAR - character (fixed width)</li>
+							<li>TEXT - Variable-length (4 gigs per field)</li>
+						</ul>
+						<p>
+							Text Sizes - Bigger capacity = more overhead </br>
+							<a target="_blank" href="https://dev.mysql.com/doc/refman/5.6/en/storage-requirements.html">https://dev.mysql.com/doc/refman/5.6/en/storage-requirements.html</a>
+						</p>
+					</section>
+					<section>
+						<h3>Data types</h3>
+						<ul>
+							<li>DATE - YYYY-MM-DD, e.g. 1978-09-17</li>
+							<li>TIME - HH:MM:SS, e.g. 05:41:26</li>
+							<li>YEAR - YEAR(2) or YEAR(4)</li>
+						</ul>
+					</section>
+					<section>
+						<h3>A Moment in Time</h3>
+						<ul>
+							<li>TIMESTAMP
+								<ul>
+									<li>Limited range- 1970-01-01 through 2038-01-19</li>
+									<li>Can automatically populate</li>
+									<li>On row creation and/or update</li>
+								</ul>
+							</li>
+
+							<li>DATETIME - Range is 1000-01-01 through 9999-12-31</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Numbers with Decimals</h3>
+						<ul>
+							<li>DECIMAL(5,2)
+								<ul>
+									<li>5 total digits</li>
+									<li>2 digits after the decimal point</li>
+									<li>-999.99 to 999.99</li>
+									<li>Exact decimal storage</li>
+								</ul>
+							</li>
+
+							<li>DATETIME - Range is 1000-01-01 through 9999-12-31</li>
+						</ul>
+					</section>
+					<section>
+						<h3>INTEGER</h3>
+						<ul>
+							<li>UNSIGNED</li>
+							<li><a target="_blank" href="https://dev.mysql.com/doc/refman/5.6/en/integer-types.html">https://dev.mysql.com/doc/refman/5.6/en/integer-types.html</a></li>
+						</ul>
+					</section>
+					<section>
+						<h3>Automatic Number Assignment</h3>
+						<ul>
+							<li>Usually with UNSIGNED types</li>
+							<li>AUTOINCREMENT</li>
+						</ul>
+					</section>
+
+				</section>
+
+				<section><!------------------------------------ slide ----------------------------------------------->
+					<section>
+						<h2>Deleting files</h2>
+					</section>
+					<section>
+						<h3>git rm</h3>
+						<p>
+							Remove files from the index, or from the working tree and the index.
+						</p>
+						<pre><code data-trim>
+//Remove files from the index
+git rm &lt;file&gt;
+
+//Remove files from the index
+git rm --cached &lt;file&gt;
+						</code></pre>
+					</section>
+				</section>
+
+				<section><!------------------------------------ slide ----------------------------------------------->
+					<section>
+						<h2>Managing log</h2>
+					</section>
+					<section>
+						<h3>git log</h3>
+						<p>
+							This command displays committed snapshots. It lets you list the project history, filter it, and search for specific changes.
+						</p>
+						<pre><code data-trim>
+//Shows the commit logs.
+git log
+						</code></pre>
+					</section>
+					<section>
+						<h3>git checkout</h3>
+						<p>
+							This command serves three distinct functions: checking out files, checking out commits, and checking out branches. In this module, we’re only concerned with the second &amp; third configurations.
+						</p>
+						<pre><code data-trim>
+//Update working directory to match the specified commit.
+git checkout &lt;commit&gt;
+
+//Update working directory to match the specified branch
+git checkout &lt;branch-name&gt;
+						</code></pre>
+					</section>
+				</section>
+
+				<section><!------------------------------------ slide ----------------------------------------------->
+					<section>
+						<h2>Deleting files</h2>
+					</section>
+					<section>
+						<h3>git rm</h3>
+						<p>
+							Remove files from the index, or from the working tree and the index.
+						</p>
+						<pre><code data-trim>
+//Remove files from the index
+git rm &lt;file&gt;
+
+//Remove files from the index
+git rm --cached &lt;file&gt;
+						</code></pre>
+					</section>
+				</section>
+
+				<section><!------------------------------------ slide ----------------------------------------------->
+					<section>
+						<h2>Controlling state with branches</h2>
+					</section>
+					<section>
+						<h3>git branch</h3>
+						<p>
+							Existing branches are listed; the current branch will be highlighted with an asterisk.
+						</p>
+						<pre><code data-trim>
+//List all of the branches in your repository.
+git branch
+
+//Create a new branch called &lt;branch&gt;.
+//This does not check out the new branch.
+git branch &lt;branch-name&gt;
+
+//Delete the specified branch.
+git branch -d &lt;branch-name&gt;
+
+//Rename the current branch
+git branch -m &lt;branch-name&gt;
+						</code></pre>
+					</section>
+					<section>
+						<h3>git merge</h3>
+						<p>
+							Join two or more development histories together
+						</p>
+						<pre><code data-trim>
+//Merge the specified branch into the current branch.
+//Git will determine the merge algorithm automatically
+git merge &lt;branch-name&gt;
+						</code></pre>
+					</section>
+				</section>
+
+				<section><!------------------------------------ slide ----------------------------------------------->
+					<section>
+						<h2>Analyzing a GitHub project structure</h2>
+					</section>
+					<section>
+						<h3>README.md</h3>
+						<p>
+							.md is markdown. README.md is used to generate the html summary you see at the bottom of projects. Github has their own flavor of Markdown.
+						</p>
+						<p><a href="http://daringfireball.net/projects/markdown/syntax" target="_blank">http://daringfireball.net/projects/markdown/syntax</a></p>
+					</section>
+					<section>
+						<h3>git .gitignore</h3>
+						<p>
+							Specifies intentionally untracked files to ignore
+						</p>
+						<p><a href="https://www.gitignore.io/" target="_blank">https://www.gitignore.io/</a></p>
+					</section>
+				</section>
+
+				<section><!------------------------------------ slide ----------------------------------------------->
+					<section>
+						<h2>Cloning a GitHub repo</h2>
+					</section>
+					<section>
+						<h3>use ssh <u>NOT</u> https</h3>
+						<p>
+							SSH keys are a way to identify trusted computers without involving passwords. You can generate an SSH key and add the public key to your GitHub account by following the procedures outlined in this section.</p>
+						<p><a href="https://help.github.com/articles/generating-an-ssh-key/" target="_blank">Generating an SSH key</a></p>
+					</section>
+					<section>
+						<h3>git clone</h3>
+						<p>Clone a repository into a new directory</p>
+						<pre><code data-trim>
+//Clone the repository located at &lt;repo&gt; onto the local machine.
+git clone &lt;repo&gt;
+
+//Clone the repository located at &lt;repo&gt; into the folder
+//called &lt;directory&gt; on the local machine.
+git clone &lt;repo&gt; &lt;directory&gt;
+						</code></pre>
+					</section>
+				</section>
+
+				<section><!------------------------------------ slide ----------------------------------------------->
+					<section>
+						<h2>Sync with Repo</h2>
+					</section>
+					<section>
+						<h3>git push</h3>
+						<p>Updates remote refs using local refs, while sending objects necessary to complete the given refs.</p>
+						<pre><code data-trim>
+//Push the specified branch to &lt;remote&gt;,
+//along with all of the necessary commits and internal objects.
+git push &lt;remote&gt; &lt;branch&gt;
+						</code></pre>
+					</section>
+					<section>
+						<h3>git fetch</h3>
+						<p>Download objects and refs from another repository</p>
+						<pre><code data-trim>
+//Fetch all of the branches from the repository.
+git fetch &lt;remote&gt;
+						</code></pre>
+					</section>
+					<section>
+						<h3>git pull</h3>
+						<p>Incorporates changes from a remote repository into the current branch.</p>
+						<pre><code data-trim>
+//Fetch the specified remote’s copy of the current branch and
+//immediately merge it into the local copy.
+git pull &lt;branch-name&gt;
+						</code></pre>
+					</section>
+				</section>
+
+				<section><!------------------------------------slide----------------------------------------------->
+					<section>
+						<h2>Resources</h2>
+					</section>
+					<section>
+						<pre><code data-trim>
+//Git manual
+git help
+
+git help &lt;command&gt;
+						</code></pre>
+						<p>
+							<ul>
+								<li><a href="https://git-scm.com/docs/git-init"  target="_blank">https://git-scm.com</a></li>
+								<li><a href="https://www.atlassian.com/git/tutorials/setting-up-a-repository/"  target="_blank">https://www.atlassian.com</a></li>
+								<li><a href="http://gitref.org/creating/"  target="_blank">http://gitref.org</a></li>
+								<li><a href="https://training.github.com/kit/downloads/github-git-cheat-sheet.pdf" target="_blank">Git Cheet Sheet</a></li>
+								<li><a href="https://www.youtube.com/channel/UCP7RrmoueENv9TZts3HXXtw" target="_blank">Git &amp; GitHub videos</a></li>
+							</ul>
+						</p>
+					</section>
+				</section>
+
+			</div><!-- slides -->
+		</div><!-- reveal -->
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
